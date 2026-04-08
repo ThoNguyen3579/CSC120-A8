@@ -45,6 +45,13 @@ public class CampusMap {
         myMap.addBuilding(new Building("Ford Hall", "100 Green Street Northampton, MA 01063", 4));
         myMap.addBuilding(new Building("Bass Hall", "4 Tyler Court Northampton, MA 01063", 4));
         System.out.println(myMap);
+
+        Library hillyer = new Library("Hillyer Library","Smith College", 2);
+        Library neilson = new Library("Neilson Library", "Smith College", 5);
+        myMap.addBuilding(hillyer);
+        myMap.addBuilding(neilson);
+        neilson.addTitle("Price and Prejudice");
+        System.out.println(myMap);   
     }
     
 }
