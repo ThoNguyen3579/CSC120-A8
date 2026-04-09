@@ -16,6 +16,16 @@ public class Cafe extends Building implements CafeRequirements{
         System.out.println("You have built a cafe: ☕");
     }
 
+    /* Overloaded constructor for the Cafe class with no address and floors*/
+    public Cafe(String name, int coffee, int sugar, int cream, int cups){
+        super(name, "Smith College", 1);
+        this.nCoffeeOunces = coffee;
+        this.nSugarPackets = sugar;
+        this.nCreams = cream;
+        this.nCups = cups;
+
+    }
+
     /**
      *  private method that restocks the ingredients whenever called 
      * @param nCoffeeOunces
@@ -45,6 +55,7 @@ public class Cafe extends Building implements CafeRequirements{
         this.nSugarPackets -=nSugarPackets;
         this.nCreams -= nCreams;
         this.nCups -= 1;
+        System.out.println("Sucessfully sold our coffee!");
     }
 
     /* Overloaded sellCoffee method with only size, serving normal black coffee */
@@ -53,6 +64,7 @@ public class Cafe extends Building implements CafeRequirements{
             this.restock(size, nSugarPackets, nCreams, 1);
         }
         this.nCoffeeOunces -= size;
+        System.out.println("Sucessfully sold our coffee with overloaded method!");
     }
 
     /**
@@ -64,27 +76,17 @@ public class Cafe extends Building implements CafeRequirements{
     }
 
     /**
-   * overrided method allowing people to only go through floors of Cafe through staircase (consecutive floors)
+   * overrided method allowing people to only stay on the first floor of the Cafe
    * @param n int
    */
     @Override
     public void goToFloor(int n){
         if (this.activeFloor == -1) {
           throw new RuntimeException("You are not inside this Building. Must call enter() before navigating between floors.");
-          }
-        if (n < 1 || n > this.nFloors) {
-          throw new RuntimeException("Invalid floor number. Valid range for this Building is 1-" + this.nFloors +".");
+        } 
+        if (n != 1){
+            throw new RuntimeException(this.name + " only has the first floor accessible by customer");
         }
-        else if(this.activeFloor - 1== n || this.activeFloor + 1 == n){
-          this.activeFloor = n;
-        }else{
-          System.out.println("No elevator, so we cannot move between non-adjacent floors");
-      }
+        System.out.println("You are already on the first floor of " + this.name);
     }    
-
-    public static void main(String[] args) {
-        Cafe cc = new Cafe("CC", "Smith College", 1, 5, 10, 10, 5);
-        cc.sellCoffee(3, 11, 2);
-    }
-    
 }

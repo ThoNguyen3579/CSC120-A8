@@ -51,6 +51,18 @@ public class House extends Building implements HouseRequirements{
     }
     }
 
+    /**
+   * overloaded setter for the list of resident every time someone moves in
+   */
+  public void moveIn(Student s1, Student s2){
+    if (!this.residents.contains(s1) && !this.residents.contains(s2)){
+      this.residents.add(s1);
+      this.residents.add(s2);
+    }else{ // throw exception if the student is already a resident 
+      throw new RuntimeException("One or both students are already residents");
+    }
+    }
+
   /**
    * setter for the list of resident every time someone moved out
    * @return Student who moved out
@@ -102,7 +114,7 @@ public class House extends Building implements HouseRequirements{
         if (n < 1 || n > this.nFloors) {
             throw new RuntimeException("Invalid floor number. Valid range for this Building is 1-" + this.nFloors +".");
         }
-        System.out.println("You are now on floor #" + n + " of " + this.name);
+        System.out.println("You are now on floor #" + n + " of " + this.name + ".");
         this.activeFloor = n;
     } else{
         if (this.activeFloor == -1) {
@@ -111,10 +123,11 @@ public class House extends Building implements HouseRequirements{
         if (n < 1 || n > this.nFloors) {
           throw new RuntimeException("Invalid floor number. Valid range for this Building is 1-" + this.nFloors +".");
         }
-        else if(this.activeFloor - 1 == 0 || this.activeFloor + 1 == 0){
+        else if(this.activeFloor - 1 == n || this.activeFloor + 1 == n){
           this.activeFloor = n;
+          System.out.println("You are now on floor #" + n + " of " + this.name + ".");
         }else{
-          System.out.println(this.name + " has no elevator, so we cannot move between non-adjacent floors");
+          System.out.println(this.name + " has no elevator, so we cannot move between non-adjacent floors.");
       }
     }
   }

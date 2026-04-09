@@ -12,6 +12,20 @@ public class Library extends Building implements LibraryRequirements{
       this.collection = new Hashtable<>();
       System.out.println("You have built a library: 📖. This library is called " + this.name);
     }
+
+    /* Overloaded constructor for Library class with only name and number of floors */
+    public Library(String name, int nFloors) {
+      super(name, "Smith College", nFloors); // let Library class inherit attributes of Building class
+      this.collection = new Hashtable<>();
+      System.out.println("You have built a library: 📖. This library is called " + this.name);
+    }
+
+    /*Another overloaded constructor for Library class */
+    public Library(String name) {
+      super(name, "Smith College", 3); // let Library class inherit attributes of Building class
+      this.collection = new Hashtable<>();
+      System.out.println("You have built a library: 📖. This library is called " + this.name);
+    }
     
     /**
      * add the title if the library does not have it, throw exception otherwise
